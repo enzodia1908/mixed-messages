@@ -12,7 +12,7 @@ const futureEvents = {
         'win a hotdog eating contest',
         'eat tacos with a dragon',
         'lose your shoes'
-    ],
+    ], 
     event3: [
         'winning a lifetime supply of random ducks',
         'meeting a wizard in a coffee shop', 

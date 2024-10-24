@@ -21,54 +21,61 @@ const futureEvents = {
     locations: [
         'on top of a giant marshmallow',
         'at a theme park run by robots',
-        'on a planet inhabited by sentient pizza toppings.'
+        'on a planet inhabited by sentient pizza toppings'
     ]
-}
+};
 
-// Generate a random number
-const generateRandomNum = () => {
-    return Math.floor(Math.random() * 3);
-}
+// Generate a random number (0, 1, 2)
+const generateRandomNum = () => Math.floor(Math.random() * 3);
 
 // Functions with different formats for randomised string outputs
-const outputFormat1 = (day, event1, event2, event3) => {
-    let day = futureEvents.days[generateRandomNum()];
-    let event1 = futureEvents.event1[generateRandomNum()];
-    let event2 = futureEvents.event2[generateRandomNum()];
-    let event3 = futureEvents.event3[generateRandomNum()];
-    console.log(`${day} you will ${event1} and ${event2} while ${event3}.`);
-}
+const outputFormat1 = () => {
+    const day = futureEvents.days[generateRandomNum()];
+    const event1 = futureEvents.event1[generateRandomNum()];
+    const event2 = futureEvents.event2[generateRandomNum()];
+    const event3 = futureEvents.event3[generateRandomNum()];
+    return `${day} you will ${event1} and ${event2} while ${event3}.`;
+};
 
-const outputFormat2 = (day, mood, event1, event2, event3, location) => {
-    let day = futureEvents.days[generateRandomNum()];
-    let mood = futureEvents.moods[generateRandomNum()]
-    let event1 = futureEvents.event1[generateRandomNum()];
-    let event2 = futureEvents.event2[generateRandomNum()];
-    let event3 = futureEvents.event3[generateRandomNum()];
-    let location = futureEvents.locations[generateRandomNum()];
-    console.log(`${day} you will ${mood} ${event1} and ${event2} while ${event3} ${location}.`)
-}
+const outputFormat2 = () => {
+    const day = futureEvents.days[generateRandomNum()];
+    const mood = futureEvents.moods[generateRandomNum()];
+    const event1 = futureEvents.event1[generateRandomNum()];
+    const event2 = futureEvents.event2[generateRandomNum()];
+    const event3 = futureEvents.event3[generateRandomNum()];
+    const location = futureEvents.locations[generateRandomNum()];
+    return `${day} you will ${mood} ${event1} and ${event2} while ${event3} ${location}.`;
+};
 
-const outputFormat3 = (time, event1, event2, event3, location) => {
-    let time = futureEvents.times[generateRandomNum()];
-    let event1 = futureEvents.event1[generateRandomNum()];
-    let event2 = futureEvents.event2[generateRandomNum()];
-    let event3 = futureEvents.event3[generateRandomNum()];
-    let location = futureEvents.locations[generateRandomNum()];
-    console.log(`${time} you will ${event1} and ${event2} while ${event3} ${location}.`)
-}
+const outputFormat3 = () => {
+    const time = futureEvents.times[generateRandomNum()];
+    const event1 = futureEvents.event1[generateRandomNum()];
+    const event2 = futureEvents.event2[generateRandomNum()];
+    const event3 = futureEvents.event3[generateRandomNum()];
+    const location = futureEvents.locations[generateRandomNum()];
+    return `${time} you will ${event1} and ${event2} while ${event3} ${location}.`;
+};
 
 // Function to create random string prediction output to user
 const predictMyFuture = () => {
-    let num = generateRandomNum();
+    const num = generateRandomNum();
     if (num === 0) {
-        return outputFormat1(day, event1, event2, event3);
+        return outputFormat1();
     } else if (num === 1) {
-        return outputFormat2(day, mood, event1, event2, event3, location);
-    } else if (num === 2) {
-        return outputFormat3(time, event1, event2, event3, location);
+        return outputFormat2();
+    } else {
+        return outputFormat3();
     }
-}
+};
 
-predictMyFuture();
 
+document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("predictBtn"); // Get the button
+    const predictionOutput = document.getElementById("predictionOutput"); // Get the paragraph element for prediction output
+
+    // Add a click event listener to the button
+    button.addEventListener("click", () => {
+        const prediction = predictMyFuture(); // Call the function to get the prediction
+        predictionOutput.textContent = prediction; // Set the prediction as the text content of the paragraph
+    });
+});
